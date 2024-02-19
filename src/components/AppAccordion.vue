@@ -30,35 +30,31 @@
     </span>
   </button>
 
-  <div
-    v-show="isOpen"
-    :id="uid"
-    class="p-3 mt-2 bg-gray-100 dark:bg-gray-700"
-  >
+  <div v-show="isOpen" :id="uid" class="p-3 mt-2 bg-gray-100 dark:bg-gray-700">
     <slot name="content" />
   </div>
 </template>
 
 <script>
-  import { Icon } from "@iconify/vue";
-  let _uid = 0;
+import { Icon } from "@iconify/vue";
+let _uid = 0;
 
-  export default {
-    data() {
-      _uid += 1;
-      return {
-        isOpen: false,
-        uid: `collapse${_uid}`,
-      };
-    },
+export default {
+  data() {
+    _uid += 1;
+    return {
+      isOpen: false,
+      uid: `collapse${_uid}`,
+    };
+  },
 
-    methods: {
-      toggleAccordion() {
-        this.isOpen = !this.isOpen;
-      },
+  methods: {
+    toggleAccordion() {
+      this.isOpen = !this.isOpen;
     },
-    components: {
-      Icon,
-    },
-  };
+  },
+  components: {
+    Icon,
+  },
+};
 </script>
