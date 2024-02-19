@@ -10,9 +10,15 @@ import "./assets/tailwind.css";
 import "./assets/animate.css";
 import "./assets/sass/css/windzo.css";
 import vClickOutside from "click-outside-vue3";
+import { Laue } from "laue";
+import VueChartkick from "vue-chartkick";
+import "chart.js";
+import "chartkick/chart.js";
 
 const app = createApp(App);
 app.use(router);
+app.use(Laue);
+app.use(VueChartkick);
 app.use(createPinia());
 app.use(VueApexCharts);
 app.use(PerfectScrollbar);

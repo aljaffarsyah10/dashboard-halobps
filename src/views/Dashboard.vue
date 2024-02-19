@@ -1,4 +1,40 @@
 <template>
+  <query-renderer :cubejs-api="cubejsApi" :query="query">
+    <template #default="{ resultSet }">
+      <div class="chart-renderer" style="height: 400px" v-if="resultSet">
+        <component
+          v-if="componentType"
+          :is="componentType"
+          :data="data(resultSet)"
+          :stacked="isStacked"
+          height="100%"
+          width="100%"
+        ></component>
+
+        <Table v-if="chartType === 'table'" :result-set="resultSet"></Table>
+
+        <div
+          v-if="chartType === 'number'"
+          class="number-container"
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            flex-direction: column;
+          "
+        >
+          <div
+            v-for="item in resultSet.series()"
+            :key="item.key"
+            style="font-size: 24px"
+          >
+            {{ item.series[0].value }}
+          </div>
+        </div>
+      </div>
+    </template>
+  </query-renderer>
   <div class="dashboard p-4">
     <!-- end nav -->
     <div class="mt-2 w-full">
@@ -551,11 +587,44 @@
 <script>
 // @ is an alias to /src
 import { Icon } from "@iconify/vue";
-
+import cubejs from "@cubejs-client/core";
+import { QueryRenderer } from "@cubejs-client/vue3";
+import Table from "./components/Table.vue";
+const cubejsApi = cubejs(
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDc1NTg2MjksImV4cCI6MTcwNzY0NTAyOX0.VZIbz44QKj7RJ-h5-V-9Y4nZzk7prV1msKJ5kiPgHUs",
+  {
+    apiUrl: "http://localhost:4000/cubejs-api/v1",
+  }
+);
 export default {
   name: "Dashboard",
   data() {
     return {
+      cubejsApi,
+      query: {
+        measures: ["jumlah_tiket_berdasarkan_kategori_layanan_alltime.count"],
+        order: {
+          "jumlah_tiket_berdasarkan_kategori_layanan_alltime.count": "desc",
+        },
+        dimensions: [
+          "jumlah_tiket_berdasarkan_kategori_layanan_alltime.unitkerja",
+        ],
+      },
+      query2: {
+        measures: ["glpi_tickets.count"],
+        dimensions: ["glpi_tickets.urgency"],
+        order: {
+          "glpi_tickets.count": "desc",
+        },
+      },
+      chartType: "line",
+      chartType2: "bar",
+      pivotConfig: {
+        x: ["jumlah_tiket_berdasarkan_kategori_layanan_alltime.unitkerja"],
+        y: ["measures"],
+        fillMissingDates: true,
+        joinDateRange: false,
+      },
       // for more guide apexchart.js
       // https://apexcharts.com/docs/chart-types/line-chart/
 
@@ -738,7 +807,69 @@ export default {
   },
   components: {
     Icon,
+    QueryRenderer,
+    Table,
   },
   mounted() {},
+  computed: {
+    componentType() {
+      if (this.chartType === "table" || this.chartType === "number") {
+        return null;
+      }
+
+      return [
+        this.chartType === "bar" ? "column" : this.chartType,
+        "-chart",
+      ].join("");
+    },
+
+    isStacked() {
+      return this.chartType === "area";
+    },
+  },
+  methods: {
+    data(resultSet) {
+      if (["line", "area"].includes(this.chartType)) {
+        return this.series(resultSet);
+      }
+
+      if (this.chartType === "pie") {
+        return this.pairs(resultSet);
+      }
+
+      if (this.chartType === "bar") {
+        return this.seriesPairs(resultSet);
+      }
+    },
+
+    series(resultSet) {
+      if (!resultSet) {
+        return [];
+      }
+
+      const seriesNames = resultSet.seriesNames();
+      const pivot = resultSet.chartPivot();
+      const series = [];
+      seriesNames.forEach((e) => {
+        const data = pivot.map((p) => [p.x, p[e.key]]);
+        series.push({
+          name: e.title,
+          data,
+        });
+      });
+      return series;
+    },
+
+    pairs(resultSet) {
+      return resultSet.series()[0].series.map((item) => [item.x, item.value]);
+    },
+
+    seriesPairs(resultSet) {
+      return resultSet.series().map((seriesItem) => ({
+        name: seriesItem.title,
+        data: seriesItem.series.map((item) => [item.x, item.value]),
+      }));
+    },
+  },
 };
 </script>
