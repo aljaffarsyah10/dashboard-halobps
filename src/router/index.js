@@ -35,6 +35,14 @@ const routes = [
     meta: { title: "Dashboard " + appname },
   },
 
+  //Blank
+  {
+    path: "/dashboard-clean",
+    name: "DashboardClean",
+    component: Dashboard,
+    meta: { title: "Dashboard-clean " + appname },
+  },
+
   // Components based Routes
   {
     path: "/component/alert",

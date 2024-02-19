@@ -3,16 +3,8 @@
   <nav class="sidebar bg-white dark:bg-gray-800">
     <!-- sidebar head -->
     <div class="sidebar-head p-4">
-      <router-link
-        to="/"
-        exact
-        class="flex"
-      >
-        <img
-          class="w-8 mt-1"
-          src="@/assets/logo/logo.svg"
-          alt="logo windzo"
-        />
+      <router-link to="/" exact class="flex">
+        <img class="w-8 mt-1" src="@/assets/logo/logo.svg" alt="logo windzo" />
         <h2
           class="text-2xl font-normal ml-3 mt-2 text-gray-800 dark:text-gray-200"
           translate="no"
@@ -229,12 +221,12 @@
 </template>
 
 <script>
-  import { Icon } from "@iconify/vue";
-  import MenuAccordion from "./MenuAccordion.vue";
-  export default {
-    components: {
-      Icon,
-      MenuAccordion,
-    },
-  };
+import { Icon } from "@iconify/vue";
+import MenuAccordion from "./MenuAccordion.vue";
+export default {
+  components: {
+    Icon,
+    MenuAccordion,
+  },
+};
 </script>
