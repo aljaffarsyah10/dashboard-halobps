@@ -99,10 +99,7 @@
               <h2>Notifications</h2>
               <button class="text-blue-500 text-sm">Mark all as Read</button>
             </div>
-            <div
-              class="p-5 text-center"
-              v-if="!notifList.length"
-            >
+            <div class="p-5 text-center" v-if="!notifList.length">
               <p class="text-gray-800 dark:text-gray-300">
                 No notifications yet.
               </p>
@@ -141,22 +138,19 @@
           </div>
         </transition>
 
-        <button
-          @blur="menuToggleBlur"
-          @click="menuToggle"
-        >
+        <button @blur="menuToggleBlur" @click="menuToggle">
           <div class="user-avatar flex p-1 cursor-pointer rounded-md">
             <div>
               <img
-                src="../assets/img/user.jpg"
-                class="rounded-full mr-4 w-10 h-10 p-1 ring-1 ring-gray-300 dark:ring-gray-500"
+                src="../assets/img/user.png"
+                class="rounded-full mr-4 h-10 p-1 ring-1 ring-gray-300 dark:ring-gray-500"
                 alt=""
               />
             </div>
             <div class="text-left lg:block md:block hidden">
-              <h2 class="dark:text-white text-gray-800">Hi, Sahrul</h2>
+              <h2 class="dark:text-white text-gray-800">Hi, Admin</h2>
               <p class="text-xs text-gray-400 dark:text-gray-500">
-                Frontend Developer
+                Administrator
               </p>
             </div>
             <!-- <span class="text-md mt-4 text-gray-300"
@@ -173,7 +167,7 @@
           >
             <div class="py-3 px-4 text-sm text-gray-900 dark:text-gray-200">
               <div>Logged As</div>
-              <div class="font-medium truncate">Moh Sahrullah</div>
+              <div class="font-medium truncate">Administrator</div>
             </div>
             <ul
               class="py-1 text-sm text-gray-700 dark:text-gray-200"
@@ -218,98 +212,98 @@
 </template>
 <style></style>
 <script>
-  import { Icon } from "@iconify/vue";
-  import { fullscreen } from "@/helper/fullscreen";
-  import { setDarkMode, loadDarkMode } from "@/helper/theme";
-  export default {
-    data() {
-      return {
-        menu: false,
-        darkMode: false,
-        notification: false,
-        fullscreenMode: false,
+import { Icon } from "@iconify/vue";
+import { fullscreen } from "@/helper/fullscreen";
+import { setDarkMode, loadDarkMode } from "@/helper/theme";
+export default {
+  data() {
+    return {
+      menu: false,
+      darkMode: false,
+      notification: false,
+      fullscreenMode: false,
 
-        notifList: [
-          {
-            name: "Elizabeth Begum",
-            image: "user1.png",
-            message:
-              "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora culpa blanditiis neque animi sequi sunt incidunt beatae? Aperiam facilis consectetur,",
-            hours: "12 hours ago",
-          },
-          {
-            name: "Ethan Roger",
-            image: "user2.png",
-            message:
-              "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora culpa blanditiis neque animi sequi sunt incidunt beatae? Aperiam facilis consectetur,",
-            hours: "12 hours ago",
-          },
-          {
-            name: "Taylor neal",
-            image: "user4.png",
-            message:
-              "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora culpa blanditiis neque animi sequi sunt incidunt beatae? Aperiam facilis consectetur,",
-            hours: "2 days hours ago",
-          },
-        ],
-      };
+      notifList: [
+        {
+          name: "Elizabeth Begum",
+          image: "user1.png",
+          message:
+            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora culpa blanditiis neque animi sequi sunt incidunt beatae? Aperiam facilis consectetur,",
+          hours: "12 hours ago",
+        },
+        {
+          name: "Ethan Roger",
+          image: "user2.png",
+          message:
+            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora culpa blanditiis neque animi sequi sunt incidunt beatae? Aperiam facilis consectetur,",
+          hours: "12 hours ago",
+        },
+        {
+          name: "Taylor neal",
+          image: "user4.png",
+          message:
+            "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora culpa blanditiis neque animi sequi sunt incidunt beatae? Aperiam facilis consectetur,",
+          hours: "2 days hours ago",
+        },
+      ],
+    };
+  },
+  components: {
+    Icon,
+  },
+  watch: {
+    $route() {
+      this.menu = false;
+      this.notification = false;
     },
-    components: {
-      Icon,
-    },
-    watch: {
-      $route() {
-        this.menu = false;
-        this.notification = false;
-      },
-    },
-    methods: {
-      fullscreen,
-      setDarkMode,
-      loadDarkMode,
+  },
+  methods: {
+    fullscreen,
+    setDarkMode,
+    loadDarkMode,
 
-      menuToggle: function () {
-        this.menu = !this.menu;
-      },
-      menuToggleBlur: function () {
-        this.menu = false;
-      },
-      notifToggle: function () {
-        this.notification = !this.notification;
-      },
-      notifToggleBlur: function () {
-        this.notification = false;
-      },
-      limitText(message) {
-        const text =
-          message.length > 25 ? message.substring(0, 25) + "..." : message;
-        return text;
-      },
-      fullscreenToggle() {
-        this.fullscreenMode = !this.fullscreenMode;
-        this.fullscreen(this.fullscreenMode);
-      },
-      // set theme to dark and light
-      setTheme(bool) {
-        this.darkMode = bool;
-        this.setDarkMode(bool);
-      },
-
-      imageAssets(url) {
-        return require("@/assets/img/" + url);
-      },
+    menuToggle: function () {
+      this.menu = !this.menu;
     },
-    mounted() {
-      // get theme dark or light with loadDarkMode()
-      this.darkMode = this.loadDarkMode();
-
-      document.onfullscreenchange = (event) => {
-        if (document.fullscreenElement) {
-          this.fullscreenMode = true;
-        } else {
-          this.fullscreenMode = false;
-        }
-      };
+    menuToggleBlur: function () {
+      this.menu = false;
     },
-  };
+    notifToggle: function () {
+      this.notification = !this.notification;
+    },
+    notifToggleBlur: function () {
+      this.notification = false;
+    },
+    limitText(message) {
+      const text =
+        message.length > 25 ? message.substring(0, 25) + "..." : message;
+      return text;
+    },
+    fullscreenToggle() {
+      this.fullscreenMode = !this.fullscreenMode;
+      this.fullscreen(this.fullscreenMode);
+    },
+    // set theme to dark and light
+    setTheme(bool) {
+      this.darkMode = bool;
+      this.setDarkMode(bool);
+    },
+
+    imageAssets(url) {
+      return require("@/assets/img/" + url);
+    },
+  },
+  mounted() {
+    // get theme dark or light with loadDarkMode()
+    this.darkMode = this.loadDarkMode();
+
+    document.onfullscreenchange = (event) => {
+      if (document.fullscreenElement) {
+        this.fullscreenMode = true;
+      } else {
+        this.fullscreenMode = false;
+      }
+    };
+  },
+};
 </script>

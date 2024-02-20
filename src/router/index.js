@@ -24,7 +24,7 @@ import Page500 from "../views/layouts/error/500.vue";
 import PageMaintenance from "../views/layouts/error/maintenance.vue";
 import Tables from "../views/tables.vue";
 
-var appname = " - Windzo Dashboard Admin Template";
+var appname = " - HaloBPS Dashboard Report";
 
 const routes = [
   // Routes

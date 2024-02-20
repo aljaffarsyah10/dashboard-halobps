@@ -3,21 +3,13 @@
   <nav class="sidebar bg-white dark:bg-gray-800">
     <!-- sidebar head -->
     <div class="sidebar-head p-4">
-      <router-link
-        to="/"
-        exact
-        class="flex"
-      >
-        <img
-          class="w-8 mt-1"
-          src="@/assets/logo/logo.svg"
-          alt="logo windzo"
-        />
+      <router-link to="/" exact class="flex">
+        <img class="w-8 mt-1" src="@/assets/logo/logo.svg" alt="logo " />
         <h2
           class="text-2xl font-normal ml-3 mt-2 text-gray-800 dark:text-gray-200"
           translate="no"
         >
-          Windzo<span class="text-primary">.</span>
+          HaloBPS<span class="text-primary">.</span>
         </h2>
       </router-link>
       <div
@@ -78,11 +70,7 @@
           </div>
         </div>
       </div> -->
-      <div
-        class="pb-5"
-        :key="index"
-        v-for="(item, index) in sidebarList.menu"
-      >
+      <div class="pb-5" :key="index" v-for="(item, index) in sidebarList.menu">
         <p class="font-medium text-gray-400 dark:text-gray-400">
           {{ item.name }}
         </p>
@@ -116,21 +104,21 @@
 </template>
 
 <script>
-  import { useSidebar } from "@/store/sidebar";
-  import { Icon } from "@iconify/vue";
-  import MenuAccordion from "./MenuAccordion.vue";
+import { useSidebar } from "@/store/sidebar";
+import { Icon } from "@iconify/vue";
+import MenuAccordion from "./MenuAccordion.vue";
 
-  export default {
-    setup() {
-      const sidebarList = useSidebar();
-      return { sidebarList };
-    },
-    components: {
-      Icon,
-      MenuAccordion,
-    },
-    mounted() {
-      console.log(this.sidebarList.menu.map());
-    },
-  };
+export default {
+  setup() {
+    const sidebarList = useSidebar();
+    return { sidebarList };
+  },
+  components: {
+    Icon,
+    MenuAccordion,
+  },
+  mounted() {
+    console.log(this.sidebarList.menu.map());
+  },
+};
 </script>

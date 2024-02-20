@@ -1,40 +1,4 @@
 <template>
-  <query-renderer :cubejs-api="cubejsApi" :query="query">
-    <template #default="{ resultSet }">
-      <div class="chart-renderer" style="height: 400px" v-if="resultSet">
-        <component
-          v-if="componentType"
-          :is="componentType"
-          :data="data(resultSet)"
-          :stacked="isStacked"
-          height="100%"
-          width="100%"
-        ></component>
-
-        <Table v-if="chartType === 'table'" :result-set="resultSet"></Table>
-
-        <div
-          v-if="chartType === 'number'"
-          class="number-container"
-          style="
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            flex-direction: column;
-          "
-        >
-          <div
-            v-for="item in resultSet.series()"
-            :key="item.key"
-            style="font-size: 24px"
-          >
-            {{ item.series[0].value }}
-          </div>
-        </div>
-      </div>
-    </template>
-  </query-renderer>
   <div class="dashboard p-4">
     <!-- end nav -->
     <div class="mt-2 w-full">
@@ -51,14 +15,18 @@
           <button
             class="bg-white dark:bg-gray-800 hover:border-gray-200 dark:hover:bg-gray-700 dark:text-white dark:border-gray-700 border rounded py-2 px-5"
           >
-            New view
+            <a href="http://localhost:4000/" target="_blank">
+              New Data Model
+            </a>
           </button>
-          <button
-            class="bg-primary border flex gap-2 text-white hover:bg-primary/80 dark:border-gray-700 rounded py-3 px-5"
-          >
-            <span class="icon text-2xl"><Icon icon="ic:twotone-plus" /></span>
-            <span class="text"> Create New Report</span>
-          </button>
+          <a href="http://localhost:8080/" target="_blank">
+            <button
+              class="bg-primary border flex gap-2 text-white hover:bg-primary/80 dark:border-gray-700 rounded py-3 px-5"
+            >
+              <span class="icon text-2xl"><Icon icon="ic:twotone-plus" /></span>
+              <span class="text"> Create New Report</span>
+            </button>
+          </a>
         </div>
       </div>
     </div>
@@ -78,16 +46,13 @@
             <span class="">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                role="img"
                 width="30px"
                 height="30px"
-                preserveAspectRatio="xMidYMid meet"
                 viewBox="0 0 24 24"
               >
                 <path
                   fill="currentColor"
-                  d="M10 16V8a2 2 0 0 1 2-2h9V5c0-1.1-.9-2-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2v-1h-9a2 2 0 0 1-2-2zm3-8c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h9V8h-9zm3 5.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"
+                  d="m13.817 5.669l4.504 4.501l-8.15 8.15l-4.501-4.504zm-3.006 13.944l8.8-8.8a.894.894 0 0 0 .001-1.28l-5.156-5.156a.926.926 0 0 0-1.28.001l-8.8 8.8a.894.894 0 0 0-.001 1.28l5.156 5.156a.926.926 0 0 0 1.28-.001m12.663-9.073L10.556 23.473c-.332.326-.787.527-1.289.527s-.957-.201-1.289-.527L6.184 21.68a2.74 2.74 0 0 0-3.875-3.874l.001-.001l-1.781-1.794c-.326-.332-.527-.787-.527-1.289s.201-.957.527-1.289L13.448.527C13.78.201 14.235 0 14.737 0s.957.201 1.289.527l1.781 1.781a2.74 2.74 0 1 0 3.874 3.874l.001-.001l1.794 1.781c.326.332.527.787.527 1.289s-.201.957-.527 1.289z"
                 />
               </svg>
             </span>
@@ -96,9 +61,13 @@
 
         <div class="block p-2 w-full">
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
-            Rp.23.423.009
+            <ChartRenderer
+              :cubejs-api="cubejsApi"
+              :query="TotalTicket"
+              chartType="number"
+            />
           </p>
-          <h2 class="font-normal text-gray-400 text-md mt-1">Total Payouts</h2>
+          <h2 class="font-normal text-gray-400 text-md mt-1">Total Tiket</h2>
         </div>
       </div>
       <!-- end card -->
@@ -112,16 +81,13 @@
             <span class="">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                role="img"
                 width="30px"
                 height="30px"
-                preserveAspectRatio="xMidYMid meet"
-                viewBox="0 0 24 24"
+                viewBox="0 0 576 512"
               >
                 <path
                   fill="currentColor"
-                  d="M5 22h14a2 2 0 0 0 2-2V9a1 1 0 0 0-1-1h-3v-.777c0-2.609-1.903-4.945-4.5-5.198A5.005 5.005 0 0 0 7 7v1H4a1 1 0 0 0-1 1v11a2 2 0 0 0 2 2zm12-12v2h-2v-2h2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-2 3h2v2H7v-2z"
+                  d="M128 160h320v192H128zm400 96c0 26.51 21.49 48 48 48v96c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48v-96c26.51 0 48-21.49 48-48s-21.49-48-48-48v-96c0-26.51 21.49-48 48-48h480c26.51 0 48 21.49 48 48v96c-26.51 0-48 21.49-48 48m-48-104c0-13.255-10.745-24-24-24H120c-13.255 0-24 10.745-24 24v208c0 13.255 10.745 24 24 24h336c13.255 0 24-10.745 24-24z"
                 />
               </svg>
             </span>
@@ -130,9 +96,13 @@
 
         <div class="block p-2 w-full">
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
-            256
+            <ChartRenderer
+              :cubejs-api="cubejsApi"
+              :query="TotalTicketAssign"
+              chartType="number"
+            />
           </p>
-          <h2 class="font-normal text-gray-400 text-md mt-1">Total Sales</h2>
+          <h2 class="font-normal text-gray-400 text-md mt-1">Ticket Assign</h2>
         </div>
       </div>
       <!-- end card -->
@@ -168,11 +138,13 @@
 
         <div class="block p-2 w-full">
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
-            3569
+            <ChartRenderer
+              :cubejs-api="cubejsApi"
+              :query="TotalUserQuery"
+              chartType="number"
+            />
           </p>
-          <h2 class="font-normal text-gray-400 text-md mt-1">
-            Total Customers
-          </h2>
+          <h2 class="font-normal text-gray-400 text-md mt-1">Total Users</h2>
         </div>
       </div>
       <!-- end card -->
@@ -206,7 +178,11 @@
 
         <div class="block p-2 w-full">
           <p class="font-semibold text-gray-900 dark:text-gray-200 text-xl">
-            7230
+            <ChartRenderer
+              :cubejs-api="cubejsApi"
+              :query="TotalLoginQuery"
+              chartType="number"
+            />
           </p>
           <h2 class="font-normal text-gray-400 text-md mt-1">Total Visit</h2>
         </div>
@@ -214,6 +190,293 @@
       <!-- end card -->
     </div>
     <!-- end wrapper card -->
+
+    <div class="mt-2 lg:flex block lg:gap-2">
+      <div
+        class="mt-2 bg-white dark:bg-gray-800 p-0 w-full rounded-md box-border border dark:border-gray-700"
+      >
+        <div class="head p-5">
+          <h2 class="font-bold text-lg text-gray-800 dark:text-gray-200">
+            1,780
+          </h2>
+          <p class="text-gray-400 font-lexend font-normal">
+            Ticket by entities
+          </p>
+          <span class="float-right">
+            <h2 class="text-green-500 -mt-12 flex">
+              <span class="mr-2"> 27.9% </span
+              ><span>
+                <Icon icon="akar-icons:arrow-up" />
+              </span>
+            </h2>
+          </span>
+        </div>
+        <div class="wrapper-chart mt-5 pr-2 pl-2">
+          <ChartRenderer
+            :cubejs-api="cubejsApi"
+            :query="BarchartEntites"
+            chartType="bar"
+            style="height: 400px"
+          />
+
+          <hr />
+          <div class="footer p-5">
+            <div class="wrapper-button flex justify-between mt-3">
+              <select
+                name=""
+                id=""
+                class="dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700 border max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
+              >
+                <option value="">Last 7 days</option>
+              </select>
+              <button class="uppercase border-b border-red-600 text-red-600">
+                Product Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mt-2 bg-white dark:bg-gray-800 p-0 w-full rounded-md box-border border dark:border-gray-700"
+      >
+        <div class="head p-5">
+          <h2 class="font-bold text-lg text-gray-800 dark:text-gray-200">
+            5,355
+          </h2>
+          <p class="text-gray-400 font-lexend font-normal">Visitor this week</p>
+
+          <span class="float-right">
+            <h2 class="text-green-500 -mt-12 flex">
+              <span class="mr-2"> 47.9% </span
+              ><span>
+                <Icon icon="akar-icons:arrow-up" />
+              </span>
+            </h2>
+          </span>
+        </div>
+        <div class="wrapper-chart mt-5">
+          <apexchart
+            width="100%"
+            height="380"
+            type="area"
+            :options="optionsVisitor"
+            :series="seriesVisitor"
+          ></apexchart>
+          <br />
+          <hr />
+          <div class="footer p-5">
+            <div class="wrapper-button flex justify-between mt-3">
+              <select
+                name=""
+                id=""
+                class="dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700 border max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
+              >
+                <option value="">Last 7 days</option>
+              </select>
+              <button class="uppercase border-b border-red-600 text-red-600">
+                Vistor Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mt-2 bg-white dark:bg-gray-800 p-0 w-full rounded-md box-border border dark:border-gray-700"
+      >
+        <div class="head p-5">
+          <h2 class="font-bold text-lg text-gray-800 dark:text-gray-200">
+            475
+          </h2>
+          <p class="text-gray-400 font-lexend font-normal">Ticket by type</p>
+        </div>
+
+        <div class="wrapper-chart mt-5">
+          <ChartRenderer
+            :cubejs-api="cubejsApi"
+            :query="TypeTicketQuery"
+            chartType="pie"
+            style="height: 350px"
+          />
+
+          <div class="p-3"></div>
+          <br />
+          <hr />
+          <div class="footer p-5">
+            <div class="wrapper-button flex justify-between mt-3">
+              <select
+                name=""
+                id=""
+                class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
+              >
+                <option value="">Last 7 years</option>
+              </select>
+
+              <button class="uppercase border-b border-red-600 text-red-600">
+                User Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-2 lg:flex block lg:gap-2 relative">
+      <div
+        class="bg-white dark:bg-gray-800 p-0 lg:w-3/4 w-full rounded-md box-border border dark:border-gray-700"
+      >
+        <div class="p-5 flex justify-between">
+          <div>
+            <h2 class="font-medium text-sm text-gray-800 dark:text-gray-200">
+              SALES
+            </h2>
+            <h1 class="font-semibold text-4xl text-gray-800 dark:text-gray-200">
+              72%
+            </h1>
+
+            <p class="text-gray-400 font-lexend font-normal">
+              your sales chart per-years
+            </p>
+          </div>
+
+          <div class="flex gap-5">
+            <span class="">
+              <h2 class="text-red-500 flex">
+                <span class="mr-2"> 15.9% </span
+                ><span>
+                  <Icon icon="akar-icons:arrow-down" />
+                </span>
+              </h2>
+            </span>
+            <span class="">
+              <h2 class="text-green-500 flex">
+                <span class="mr-2"> 87.9% </span
+                ><span>
+                  <Icon icon="akar-icons:arrow-up" />
+                </span>
+              </h2>
+            </span>
+          </div>
+        </div>
+
+        <ChartRenderer
+          :cubejs-api="cubejsApi"
+          :query="TicketByMonthQuery"
+          chartType="line"
+        />
+        <br />
+        <hr />
+        <div class="wrapper-button p-5 flex justify-between mt-3">
+          <select
+            name=""
+            id=""
+            class="dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700 border max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
+          >
+            <option value="">Last 7 years</option>
+          </select>
+          <button class="uppercase border-b border-red-600 text-red-600">
+            Sales Report
+          </button>
+        </div>
+      </div>
+      <div
+        class="bg-white dark:bg-gray-800 p-5 lg:mt-0 mt-4 lg:w-2/4 border dark:border-gray-700 rounded-md w-full"
+      >
+        <div class="">
+          <h2 class="text-lg font-semibold dark:text-gray-200">
+            PARTNER SALES
+          </h2>
+          <p class="text-gray-400">This is list if your partner online.</p>
+        </div>
+        <perfect-scrollbar class="divide-y h-96 mt-5 dark:divide-gray-700">
+          <div class="p-3 w-full">
+            <div class="flex gap-5">
+              <div>
+                <img
+                  class="w-14 rounded-md"
+                  src="../assets/img/user1.png"
+                  alt=""
+                />
+              </div>
+              <div class="mt-1">
+                <h2 class="dark:text-gray-200">Elizabeth Begum</h2>
+                <p class="text-sm dark:text-gray-500 text-gray-400">
+                  Active now
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-3 w-full">
+            <div class="flex gap-5">
+              <div>
+                <img
+                  class="w-14 rounded-md"
+                  src="../assets/img/user2.png"
+                  alt=""
+                />
+              </div>
+              <div class="mt-1">
+                <h2 class="dark:text-gray-200">Ethan Roger</h2>
+                <p class="text-sm dark:text-gray-500 text-gray-400">
+                  Active now
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-3 w-full">
+            <div class="flex gap-5">
+              <div>
+                <img
+                  class="w-14 rounded-md"
+                  src="../assets/img/user3.png"
+                  alt=""
+                />
+              </div>
+              <div class="mt-1">
+                <h2 class="dark:text-gray-200">Tobi Ferreira</h2>
+                <p class="text-sm dark:text-gray-500 text-gray-400">
+                  last online 2 hours ago
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-3 w-full">
+            <div class="flex gap-5">
+              <div>
+                <img
+                  class="w-14 rounded-md"
+                  src="../assets/img/user4.png"
+                  alt=""
+                />
+              </div>
+              <div class="mt-1">
+                <h2 class="dark:text-gray-200">Taylor neal</h2>
+                <p class="text-sm dark:text-gray-500 text-gray-400">
+                  last online 2 minutes ago
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="p-3 w-full">
+            <div class="flex gap-5">
+              <div>
+                <img
+                  class="w-14 rounded-md"
+                  src="../assets/img/user5.png"
+                  alt=""
+                />
+              </div>
+              <div class="mt-1">
+                <h2 class="dark:text-gray-200">Bruno Barron</h2>
+                <p class="text-sm dark:text-gray-500 text-gray-400">
+                  last online 2 hours ago
+                </p>
+              </div>
+            </div>
+          </div>
+        </perfect-scrollbar>
+      </div>
+    </div>
+
     <div class="mt-2 lg:flex block lg:gap-2 relative">
       <div
         class="bg-white dark:bg-gray-800 p-0 lg:w-3/4 w-full rounded-md box-border border dark:border-gray-700"
@@ -375,6 +638,7 @@
         </perfect-scrollbar>
       </div>
     </div>
+
     <div class="mt-2 lg:flex block lg:gap-2">
       <div
         class="mt-2 bg-white dark:bg-gray-800 p-0 w-full rounded-md box-border border dark:border-gray-700"
@@ -581,6 +845,39 @@
         </button>
       </div>
     </div>
+    <div
+      class="mt-2 bg-white dark:bg-gray-800 p-5 w-full rounded-md box-border border dark:border-gray-700"
+    >
+      <h2 class="font-bold text-lg text-gray-800 dark:text-gray-200">
+        Latest Ticket Assign
+      </h2>
+      <p class="text-gray-400 font-lexend font-normal">
+        This is a list of latest assign
+      </p>
+      <div class="wrapping-table mt-10">
+        <table
+          class="w-full text-sm text-left text-gray-500 dark:text-gray-400 lg:overflow-auto overflow-x-scroll"
+        >
+          <ChartRenderer
+            :cubejs-api="cubejsApi"
+            :query="TableLatestAssign"
+            chartType="table"
+          />
+        </table>
+      </div>
+      <div class="wrapper-button flex justify-between mt-3">
+        <select
+          name=""
+          id=""
+          class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
+        >
+          <option value="">Last 7 years</option>
+        </select>
+        <button class="uppercase border-b border-red-600 text-red-600">
+          Transaction Report
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -589,7 +886,8 @@
 import { Icon } from "@iconify/vue";
 import cubejs from "@cubejs-client/core";
 import { QueryRenderer } from "@cubejs-client/vue3";
-import Table from "./components/Table.vue";
+import ChartRenderer from "./components/ChartRenderer.vue";
+
 const cubejsApi = cubejs(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDc1NTg2MjksImV4cCI6MTcwNzY0NTAyOX0.VZIbz44QKj7RJ-h5-V-9Y4nZzk7prV1msKJ5kiPgHUs",
   {
@@ -598,6 +896,10 @@ const cubejsApi = cubejs(
 );
 export default {
   name: "Dashboard",
+  components: {
+    Icon,
+    ChartRenderer,
+  },
   data() {
     return {
       cubejsApi,
@@ -617,13 +919,51 @@ export default {
           "glpi_tickets.count": "desc",
         },
       },
-      chartType: "line",
-      chartType2: "bar",
-      pivotConfig: {
-        x: ["jumlah_tiket_berdasarkan_kategori_layanan_alltime.unitkerja"],
-        y: ["measures"],
-        fillMissingDates: true,
-        joinDateRange: false,
+      TotalTicket: {
+        measures: ["glpi_tickets.count"],
+      },
+      TotalUserQuery: {
+        measures: ["glpi_users.count"],
+      },
+      TotalLoginQuery: {
+        measures: ["glpi_events.TotalLogin"],
+        dimensions: ["glpi_events.service"],
+        order: {
+          "glpi_events.TotalLogin": "desc",
+        },
+        timeDimensions: [],
+      },
+      TotalTicketAssign: {
+        measures: ["glpi_tickets.TotalTiketAssign"],
+        dimensions: ["glpi_tickets.status"],
+        timeDimensions: [],
+        order: {
+          "glpi_tickets.TotalTiketAssign": "desc",
+        },
+      },
+      TableLatestAssign: {
+        dimensions: [
+          "glpi_tickets.name",
+          "glpi_tickets.status",
+          "glpi_tickets.urgency",
+          "glpi_tickets.type",
+          "glpi_tickets.date",
+        ],
+        order: [["glpi_tickets.id", "desc"]],
+        limit: 10,
+      },
+      BarchartEntites: {
+        measures: ["glpi_tickets.count"],
+        dimensions: ["glpi_entities.name"],
+      },
+      TypeTicketQuery: {
+        measures: ["glpi_tickets.count"],
+        dimensions: ["glpi_tickets.type"],
+      },
+      TicketByMonthQuery: {
+        measures: ["glpi_tickets.count"],
+        dimensions: ["glpi_tickets.date"],
+        order: [["glpi_tickets.date", "asc"]],
       },
       // for more guide apexchart.js
       // https://apexcharts.com/docs/chart-types/line-chart/
@@ -805,71 +1145,7 @@ export default {
     };
     // end chart data line
   },
-  components: {
-    Icon,
-    QueryRenderer,
-    Table,
-  },
+
   mounted() {},
-  computed: {
-    componentType() {
-      if (this.chartType === "table" || this.chartType === "number") {
-        return null;
-      }
-
-      return [
-        this.chartType === "bar" ? "column" : this.chartType,
-        "-chart",
-      ].join("");
-    },
-
-    isStacked() {
-      return this.chartType === "area";
-    },
-  },
-  methods: {
-    data(resultSet) {
-      if (["line", "area"].includes(this.chartType)) {
-        return this.series(resultSet);
-      }
-
-      if (this.chartType === "pie") {
-        return this.pairs(resultSet);
-      }
-
-      if (this.chartType === "bar") {
-        return this.seriesPairs(resultSet);
-      }
-    },
-
-    series(resultSet) {
-      if (!resultSet) {
-        return [];
-      }
-
-      const seriesNames = resultSet.seriesNames();
-      const pivot = resultSet.chartPivot();
-      const series = [];
-      seriesNames.forEach((e) => {
-        const data = pivot.map((p) => [p.x, p[e.key]]);
-        series.push({
-          name: e.title,
-          data,
-        });
-      });
-      return series;
-    },
-
-    pairs(resultSet) {
-      return resultSet.series()[0].series.map((item) => [item.x, item.value]);
-    },
-
-    seriesPairs(resultSet) {
-      return resultSet.series().map((seriesItem) => ({
-        name: seriesItem.title,
-        data: seriesItem.series.map((item) => [item.x, item.value]),
-      }));
-    },
-  },
 };
 </script>

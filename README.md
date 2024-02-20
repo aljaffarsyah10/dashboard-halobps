@@ -1,4 +1,4 @@
-<h1 align="center">Windzo Dashboard Admin</h1>
+<h1 align="center">HaloBPS Dashboard Report</h1>
 <p align="center">this dashboard app on development fork 
 this repo and contribute</p>
 

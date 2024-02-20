@@ -4,13 +4,17 @@
     <!-- sidebar head -->
     <div class="sidebar-head p-4">
       <router-link to="/" exact class="flex">
-        <img class="w-8 mt-1" src="@/assets/logo/logo.svg" alt="logo windzo" />
-        <h2
+        <img
+          class="shadow-xl rounded-xl p-1 ring-2 ring-gray-300 dark:ring-gray-500"
+          src="@/assets/logo/logohalobps.png"
+          alt="logo HaloBPS"
+        />
+        <!-- <h2
           class="text-2xl font-normal ml-3 mt-2 text-gray-800 dark:text-gray-200"
           translate="no"
         >
-          Windzo<span class="text-primary">.</span>
-        </h2>
+          HaloBPS<span class="text-primary">.</span>
+        </h2> -->
       </router-link>
       <div
         class="bg-gray-700 absolute mt-3 dark:block hidden rounded-md py-1 px-2 text-xs text-gray-200"
