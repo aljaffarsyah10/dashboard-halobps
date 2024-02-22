@@ -56,7 +56,8 @@
               <span class="w-full"> Dashboard </span>
             </router-link>
           </div>
-          <div class="item mt-3">
+
+          <!-- <div class="item mt-3">
             <menu-accordion>
               <template v-slot:icon>
                 <Icon icon="gg:components" />
@@ -113,6 +114,47 @@
                 </router-link>
               </template>
             </menu-accordion>
+          </div> -->
+
+          <div class="item mt-3">
+            <menu-accordion>
+              <template v-slot:icon>
+                <Icon icon="gg:components" />
+              </template>
+              <template v-slot:title> Components </template>
+              <template v-slot:content>
+                <router-link
+                  to="/component/button"
+                  class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                >
+                  Barchart
+                </router-link>
+                <router-link
+                  to="/component/button"
+                  class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                >
+                  LineChart
+                </router-link>
+                <router-link
+                  to="/component/button"
+                  class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                >
+                  Piechart
+                </router-link>
+                <router-link
+                  to="/component/card"
+                  class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                >
+                  Card
+                </router-link>
+                <router-link
+                  to="/component/dropdown"
+                  class="w-full text-left block rounded-md p-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+                >
+                  Dropdown
+                </router-link>
+              </template>
+            </menu-accordion>
           </div>
           <div class="item mt-3">
             <menu-accordion>
@@ -125,7 +167,7 @@
               </template>
             </menu-accordion>
           </div>
-          <div class="item mt-3">
+          <!-- <div class="item mt-3">
             <menu-accordion>
               <template v-slot:icon>
                 <Icon icon="ri:pages-fill" />
@@ -188,15 +230,13 @@
                 </div>
               </template>
             </menu-accordion>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="pb-5">
-        <p class="font-medium text-gray-400 mt-4 dark:text-gray-400">
-          UI Form & Tables
-        </p>
+        <p class="font-medium text-gray-400 mt-4 dark:text-gray-400">Lainnya</p>
 
-        <div class="item mt-3">
+        <!-- <div class="item mt-3">
           <menu-accordion>
             <template v-slot:icon>
               <Icon icon="ant-design:form-outlined" />
@@ -206,15 +246,28 @@
               <p class="text-gray-800 dark:text-gray-500">Coming soon.</p>
             </template>
           </menu-accordion>
-        </div>
+        </div> -->
 
-        <div class="item mt-3">
+        <!-- <div class="item mt-3">
           <router-link to="/tables">
             <button
               class="text-gray-800 dark:text-gray-500 bg-transparent hover:bg-gray-200 dark:hover:bg-gray-700 w-full flex text-left rounded-md box-border p-3"
             >
               <span class="mr-3 text-xl"><Icon icon="bi:table" /></span>
               <span class="w-full"> Tables </span>
+              <span class="box-border mt-1 text-gray-500"> </span>
+            </button>
+          </router-link>
+        </div> -->
+        <div class="item mt-3">
+          <router-link to="/tables">
+            <button
+              class="text-gray-800 dark:text-gray-500 bg-transparent hover:bg-gray-200 dark:hover:bg-gray-700 w-full flex text-left rounded-md box-border p-3"
+            >
+              <span class="mr-3 text-xl"
+                ><Icon icon="bi-box-arrow-right"
+              /></span>
+              <span class="w-full"> SignOut </span>
               <span class="box-border mt-1 text-gray-500"> </span>
             </button>
           </router-link>

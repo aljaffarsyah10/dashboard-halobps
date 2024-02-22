@@ -12,6 +12,16 @@
           </h1>
         </div>
         <div class="flex gap-2">
+          <a href="http://localhost:8080/" target="_blank">
+            <button
+              class="bg-white dark:bg-gray-800 border flex gap-2 hover:border-gray-200 dark:hover:bg-gray-700 rounded py-3 px-5"
+            >
+              <span class="icon text-2xl"
+                ><Icon icon="material-symbols:download"
+              /></span>
+              <span class="text"> Download Report</span>
+            </button>
+          </a>
           <button
             class="bg-white dark:bg-gray-800 hover:border-gray-200 dark:hover:bg-gray-700 dark:text-white dark:border-gray-700 border rounded py-2 px-5"
           >
@@ -197,18 +207,23 @@
       >
         <div class="head p-5">
           <h2 class="font-bold text-lg text-gray-800 dark:text-gray-200">
-            1,780
+            <ChartRenderer
+              :cubejs-api="cubejsApi"
+              :query="TotalTicketLayananBPS"
+              chartType="number"
+            />
           </h2>
+          Kategori Layanan BPS
           <p class="text-gray-400 font-lexend font-normal">
             Ticket by entities
           </p>
           <span class="float-right">
-            <h2 class="text-green-500 -mt-12 flex">
+            <!-- <h2 class="text-green-500 -mt-12 flex">
               <span class="mr-2"> 27.9% </span
               ><span>
                 <Icon icon="akar-icons:arrow-up" />
               </span>
-            </h2>
+            </h2> -->
           </span>
         </div>
         <div class="wrapper-chart mt-5 pr-2 pl-2">
@@ -230,7 +245,7 @@
                 <option value="">Last 7 days</option>
               </select>
               <button class="uppercase border-b border-red-600 text-red-600">
-                Product Report
+                Entities Report
               </button>
             </div>
           </div>
@@ -285,8 +300,13 @@
       >
         <div class="head p-5">
           <h2 class="font-bold text-lg text-gray-800 dark:text-gray-200">
-            475
+            <ChartRenderer
+              :cubejs-api="cubejsApi"
+              :query="TotalTicketGangguan"
+              chartType="number"
+            />
           </h2>
+          Kategori Tipe Gangguan
           <p class="text-gray-400 font-lexend font-normal">Ticket by type</p>
         </div>
 
@@ -320,6 +340,143 @@
       </div>
     </div>
 
+    <div class="mt-2 lg:flex block lg:gap-2">
+      <div
+        class="mt-2 bg-white dark:bg-gray-800 p-0 w-full rounded-md box-border border dark:border-gray-700"
+      >
+        <div class="head p-5">
+          <h2 class="font-bold text-lg text-gray-800 dark:text-gray-200">
+            <ChartRenderer
+              :cubejs-api="cubejsApi"
+              :query="TotalTicketStatusNew"
+              chartType="number"
+            />
+          </h2>
+          Kategori Status New
+          <p class="text-gray-400 font-lexend font-normal">Ticket by status</p>
+          <span class="float-right">
+            <!-- <h2 class="text-green-500 -mt-12 flex">
+              <span class="mr-2"> 27.9% </span
+              ><span>
+                <Icon icon="akar-icons:arrow-up" />
+              </span>
+            </h2> -->
+          </span>
+        </div>
+        <div class="wrapper-chart mt-5 pr-2 pl-2">
+          <ChartRenderer
+            :cubejs-api="cubejsApi"
+            :query="BarchartStatus"
+            chartType="pie"
+            style="height: 400px"
+          />
+
+          <hr />
+          <div class="footer p-5">
+            <div class="wrapper-button flex justify-between mt-3">
+              <select
+                name=""
+                id=""
+                class="dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700 border max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
+              >
+                <option value="">Last 7 days</option>
+              </select>
+              <button class="uppercase border-b border-red-600 text-red-600">
+                Entities Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mt-2 bg-white dark:bg-gray-800 p-0 w-full rounded-md box-border border dark:border-gray-700"
+      >
+        <div class="head p-5">
+          <h2 class="font-bold text-lg text-gray-800 dark:text-gray-200">
+            5,355
+          </h2>
+          <p class="text-gray-400 font-lexend font-normal">Visitor this week</p>
+
+          <span class="float-right">
+            <h2 class="text-green-500 -mt-12 flex">
+              <span class="mr-2"> 47.9% </span
+              ><span>
+                <Icon icon="akar-icons:arrow-up" />
+              </span>
+            </h2>
+          </span>
+        </div>
+        <div class="wrapper-chart mt-5">
+          <apexchart
+            width="100%"
+            height="380"
+            type="area"
+            :options="optionsVisitor"
+            :series="seriesVisitor"
+          ></apexchart>
+          <br />
+          <hr />
+          <div class="footer p-5">
+            <div class="wrapper-button flex justify-between mt-3">
+              <select
+                name=""
+                id=""
+                class="dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700 border max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
+              >
+                <option value="">Last 7 days</option>
+              </select>
+              <button class="uppercase border-b border-red-600 text-red-600">
+                Vistor Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mt-2 bg-white dark:bg-gray-800 p-0 w-full rounded-md box-border border dark:border-gray-700"
+      >
+        <div class="head p-5">
+          <h2 class="font-bold text-lg text-gray-800 dark:text-gray-200">
+            <ChartRenderer
+              :cubejs-api="cubejsApi"
+              :query="TotalTicketGroupSIS"
+              chartType="number"
+            />
+          </h2>
+          Kategori Group Operator Dir. SIS
+          <p class="text-gray-400 font-lexend font-normal">Ticket by type</p>
+        </div>
+
+        <div class="wrapper-chart mt-5">
+          <ChartRenderer
+            :cubejs-api="cubejsApi"
+            :query="PiechartTicketGroups"
+            chartType="pie"
+            style="height: 350px"
+          />
+
+          <div class="p-3"></div>
+          <br />
+          <hr />
+          <div class="footer p-5">
+            <div class="wrapper-button flex justify-between mt-3">
+              <select
+                name=""
+                id=""
+                class="dark:bg-gray-800 dark:hover:bg-gray-700 border dark:border-gray-700 max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
+              >
+                <option value="">Last 7 years</option>
+              </select>
+
+              <button class="uppercase border-b border-red-600 text-red-600">
+                User Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="mt-2 lg:flex block lg:gap-2 relative">
       <div
         class="bg-white dark:bg-gray-800 p-0 lg:w-3/4 w-full rounded-md box-border border dark:border-gray-700"
@@ -327,14 +484,14 @@
         <div class="p-5 flex justify-between">
           <div>
             <h2 class="font-medium text-sm text-gray-800 dark:text-gray-200">
-              SALES
+              Ticket Assign
             </h2>
             <h1 class="font-semibold text-4xl text-gray-800 dark:text-gray-200">
               72%
             </h1>
 
             <p class="text-gray-400 font-lexend font-normal">
-              your sales chart per-years
+              Ticket assign chart per-month
             </p>
           </div>
 
@@ -358,11 +515,11 @@
           </div>
         </div>
 
-        <ChartRenderer
+        <!-- <ChartRenderer
           :cubejs-api="cubejsApi"
           :query="TicketByMonthQuery"
           chartType="line"
-        />
+        /> -->
         <br />
         <hr />
         <div class="wrapper-button p-5 flex justify-between mt-3">
@@ -477,7 +634,7 @@
       </div>
     </div>
 
-    <div class="mt-2 lg:flex block lg:gap-2 relative">
+    <!-- <div class="mt-2 lg:flex block lg:gap-2 relative">
       <div
         class="bg-white dark:bg-gray-800 p-0 lg:w-3/4 w-full rounded-md box-border border dark:border-gray-700"
       >
@@ -877,7 +1034,7 @@
           Transaction Report
         </button>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -941,6 +1098,22 @@ export default {
           "glpi_tickets.TotalTiketAssign": "desc",
         },
       },
+      TotalTicketLayananBPS: {
+        measures: ["glpi_tickets.TotalTicketLayananBPS"],
+        dimensions: ["glpi_tickets.entities_id"],
+      },
+      TotalTicketGangguan: {
+        measures: ["glpi_tickets.TotalTicketGangguan"],
+        dimensions: ["glpi_tickets.type"],
+      },
+      TotalTicketStatusNew: {
+        measures: ["glpi_tickets.TotalTicketStatusNew"],
+        dimensions: ["glpi_tickets.status"],
+      },
+      TotalTicketGroupSIS: {
+        measures: ["glpi_groups_tickets.TotalTicketGroupSIS"],
+        dimensions: ["glpi_groups_tickets.groups_id"],
+      },
       TableLatestAssign: {
         dimensions: [
           "glpi_tickets.name",
@@ -956,9 +1129,20 @@ export default {
         measures: ["glpi_tickets.count"],
         dimensions: ["glpi_entities.name"],
       },
+      BarchartStatus: {
+        measures: ["glpi_tickets.count"],
+        dimensions: ["glpi_tickets.status"],
+        order: {
+          "glpi_tickets.status": "asc",
+        },
+      },
       TypeTicketQuery: {
         measures: ["glpi_tickets.count"],
         dimensions: ["glpi_tickets.type"],
+      },
+      PiechartTicketGroups: {
+        measures: ["glpi_groups_tickets.count"],
+        dimensions: ["glpi_groups.name"],
       },
       TicketByMonthQuery: {
         measures: ["glpi_tickets.count"],
