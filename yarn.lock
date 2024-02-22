@@ -6080,10 +6080,10 @@ vue-template-es2015-compiler@^1.9.0:
     "@vue/server-renderer" "3.2.31"
     "@vue/shared" "3.2.31"
 
-vue3-apexcharts@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.npmjs.org/vue3-apexcharts/-/vue3-apexcharts-1.4.1.tgz"
-  integrity sha512-96qP8JDqB9vwU7bkG5nVU+E0UGQn7yYQVqUUCLQMYWDuQyu2vE77H/UFZ1yI+hwzlSTBKT9BqnNG8JsFegB3eg==
+vue3-apexcharts@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.npmjs.org/vue3-apexcharts/-/vue3-apexcharts-1.5.2.tgz"
+  integrity sha512-rGbgUJDjtsyjfRF0uzwDjzt8+M7ICSRAbm1N9KCDiczW8BSpbEZuaEsJDJYnJuLFIIVXIGilYzIcjNBf6NbeYA==
 
 vue3-perfect-scrollbar@^1.6.0:
   version "1.6.1"
