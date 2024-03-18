@@ -1046,7 +1046,7 @@
 // @ is an alias to /src
 import { Icon } from "@iconify/vue";
 import cubejs from "@cubejs-client/core";
-import { QueryRenderer } from "@cubejs-client/vue3";
+// import { QueryRenderer } from "@cubejs-client/vue3";
 import ChartRenderer from "./components/ChartRenderer.vue";
 
 const cubejsApi = cubejs(

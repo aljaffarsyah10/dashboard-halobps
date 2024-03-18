@@ -76,7 +76,7 @@
           <Icon icon="ri:moon-fill" />
         </button>
         <!-- btn notification -->
-        <button
+        <!-- <button
           @click="notifToggle"
           class="mr-5 text-2xl text-gray-500 relative"
         >
@@ -84,7 +84,7 @@
             class="bg-red-500 rounded-full p-1.5 border border-white dark:border-gray-700 -mt-1 absolute"
           ></i>
           <Icon icon="clarity:notification-line" />
-        </button>
+        </button> -->
 
         <transition name="fade">
           <div
