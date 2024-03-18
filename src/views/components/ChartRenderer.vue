@@ -40,6 +40,7 @@ import Table from "./TableCube.vue";
 
 export default {
   name: "ChartRenderer",
+
   props: {
     cubejsApi: Object,
     query: Object,

@@ -233,7 +233,6 @@
             chartType="bar"
             style="height: 400px"
           />
-
           <hr />
           <div class="footer p-5">
             <div class="wrapper-button flex justify-between mt-3">
@@ -256,27 +255,22 @@
       >
         <div class="head p-5">
           <h2 class="font-bold text-lg text-gray-800 dark:text-gray-200">
-            5,355
+            <ChartRenderer
+              :cubejs-api="cubejsApi"
+              :query="TotalTicketGangguan"
+              chartType="number"
+            />
           </h2>
-          <p class="text-gray-400 font-lexend font-normal">Visitor this week</p>
-
-          <span class="float-right">
-            <h2 class="text-green-500 -mt-12 flex">
-              <span class="mr-2"> 47.9% </span
-              ><span>
-                <Icon icon="akar-icons:arrow-up" />
-              </span>
-            </h2>
-          </span>
+          Kategori Tipe Gangguan
+          <p class="text-gray-400 font-lexend font-normal">Ticket by type</p>
         </div>
         <div class="wrapper-chart mt-5">
-          <apexchart
-            width="100%"
-            height="380"
-            type="area"
-            :options="optionsVisitor"
-            :series="seriesVisitor"
-          ></apexchart>
+          <ChartRenderer
+            :cubejs-api="cubejsApi"
+            :query="TypeTicketQuery"
+            chartType="pie"
+            style="height: 350px"
+          />
           <br />
           <hr />
           <div class="footer p-5">
@@ -302,20 +296,20 @@
           <h2 class="font-bold text-lg text-gray-800 dark:text-gray-200">
             <ChartRenderer
               :cubejs-api="cubejsApi"
-              :query="TotalTicketGangguan"
+              :query="TotalTicketUrgencySedang"
               chartType="number"
             />
           </h2>
-          Kategori Tipe Gangguan
-          <p class="text-gray-400 font-lexend font-normal">Ticket by type</p>
+          Kategori Tipe Sedang
+          <p class="text-gray-400 font-lexend font-normal">Ticket by urgency</p>
         </div>
 
         <div class="wrapper-chart mt-5">
           <ChartRenderer
             :cubejs-api="cubejsApi"
-            :query="TypeTicketQuery"
-            chartType="pie"
-            style="height: 350px"
+            :query="BarchartUrgency"
+            chartType="bar"
+            style="height: 400px"
           />
 
           <div class="p-3"></div>
@@ -393,27 +387,37 @@
       >
         <div class="head p-5">
           <h2 class="font-bold text-lg text-gray-800 dark:text-gray-200">
-            5,355
+            <!-- <ChartRenderer
+              :cubejs-api="cubejsApi"
+              :query="TotalTicketStatusNew"
+              chartType="number"
+            /> -->
           </h2>
-          <p class="text-gray-400 font-lexend font-normal">Visitor this week</p>
-
+          Kategori Tiket berdasarkan jenis BMN
+          <p class="text-gray-400 font-lexend font-normal">Ticket by BMN</p>
           <span class="float-right">
-            <h2 class="text-green-500 -mt-12 flex">
-              <span class="mr-2"> 47.9% </span
+            <!-- <h2 class="text-green-500 -mt-12 flex">
+              <span class="mr-2"> 27.9% </span
               ><span>
                 <Icon icon="akar-icons:arrow-up" />
               </span>
-            </h2>
+            </h2> -->
           </span>
         </div>
         <div class="wrapper-chart mt-5">
-          <apexchart
+          <!-- <apexchart
             width="100%"
             height="380"
             type="area"
             :options="optionsVisitor"
             :series="seriesVisitor"
-          ></apexchart>
+          ></apexchart> -->
+          <ChartRenderer
+            :cubejs-api="cubejsApi"
+            :query="BarchartAsset"
+            chartType="bar"
+            style="height: 400px"
+          />
           <br />
           <hr />
           <div class="footer p-5">
@@ -515,11 +519,11 @@
           </div>
         </div>
 
-        <!-- <ChartRenderer
+        <ChartRenderer
           :cubejs-api="cubejsApi"
           :query="TicketByMonthQuery"
           chartType="line"
-        /> -->
+        />
         <br />
         <hr />
         <div class="wrapper-button p-5 flex justify-between mt-3">
@@ -1114,6 +1118,10 @@ export default {
         measures: ["glpi_groups_tickets.TotalTicketGroupSIS"],
         dimensions: ["glpi_groups_tickets.groups_id"],
       },
+      TotalTicketUrgencySedang: {
+        measures: ["glpi_tickets.TotalTicketUrgencySedang"],
+        dimensions: ["glpi_tickets.urgency"],
+      },
       TableLatestAssign: {
         dimensions: [
           "glpi_tickets.name",
@@ -1128,6 +1136,16 @@ export default {
       BarchartEntites: {
         measures: ["glpi_tickets.count"],
         dimensions: ["glpi_entities.name"],
+        order: {
+          "glpi_entities.name": "desc",
+        },
+      },
+      BarchartUrgency: {
+        measures: ["glpi_tickets.count"],
+        dimensions: ["glpi_tickets.urgency"],
+        order: {
+          "glpi_tickets.urgency": "asc",
+        },
       },
       BarchartStatus: {
         measures: ["glpi_tickets.count"],
@@ -1148,6 +1166,20 @@ export default {
         measures: ["glpi_tickets.count"],
         dimensions: ["glpi_tickets.date"],
         order: [["glpi_tickets.date", "asc"]],
+      },
+      BarchartAsset: {
+        measures: ["glpi_tickets.count"],
+        dimensions: ["glpi_assets.name"],
+        order: {
+          "glpi_tickets.date": "asc",
+        },
+        filters: [
+          {
+            member: "glpi_assets.name",
+            operator: "notEquals",
+            values: ["non-bmn"],
+          },
+        ],
       },
       // for more guide apexchart.js
       // https://apexcharts.com/docs/chart-types/line-chart/

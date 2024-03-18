@@ -116,7 +116,7 @@
             </menu-accordion>
           </div> -->
 
-          <div class="item mt-3">
+          <!-- <div class="item mt-3">
             <menu-accordion>
               <template v-slot:icon>
                 <Icon icon="gg:components" />
@@ -155,13 +155,13 @@
                 </router-link>
               </template>
             </menu-accordion>
-          </div>
+          </div> -->
           <div class="item mt-3">
             <menu-accordion>
               <template v-slot:icon>
                 <Icon icon="ri:layout-2-fill" />
               </template>
-              <template v-slot:title> Layouts </template>
+              <template v-slot:title> About </template>
               <template v-slot:content>
                 <p>Coming soon.</p>
               </template>
@@ -260,7 +260,8 @@
           </router-link>
         </div> -->
         <div class="item mt-3">
-          <router-link to="/tables">
+          <a href="https://www.google.com">
+            <!-- <router-link to="/tables"> -->
             <button
               class="text-gray-800 dark:text-gray-500 bg-transparent hover:bg-gray-200 dark:hover:bg-gray-700 w-full flex text-left rounded-md box-border p-3"
             >
@@ -270,7 +271,8 @@
               <span class="w-full"> SignOut </span>
               <span class="box-border mt-1 text-gray-500"> </span>
             </button>
-          </router-link>
+            <!-- </router-link> -->
+          </a>
         </div>
       </div>
     </div>
