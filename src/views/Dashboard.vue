@@ -1001,7 +1001,7 @@ import ChartRenderer from "./components/ChartRenderer.vue";
 const cubejsApi = cubejs(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDc1NTg2MjksImV4cCI6MTcwNzY0NTAyOX0.VZIbz44QKj7RJ-h5-V-9Y4nZzk7prV1msKJ5kiPgHUs",
   {
-    apiUrl: "http://localhost:4000/cubejs-api/v1",
+    apiUrl: "https://cube-halobps.azurewebsites.net/cubejs-api/v1",
   }
 );
 export default {
