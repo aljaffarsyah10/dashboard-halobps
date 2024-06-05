@@ -1133,13 +1133,22 @@ export default {
         order: {
           "glpi_tickets.date": "asc",
         },
-        filters: [
-          {
-            member: "glpi_assets.name",
-            operator: "notEquals",
-            values: ["non-bmn"],
-          },
-        ],
+      "filters": [
+        {
+          "member": "glpi_assets.name",
+          "operator": "notEquals",
+          "values": [
+            "non-bmn"
+          ]
+        },
+        {
+          "member": "glpi_tickets.nup_bmn_value",
+          "operator": "notEquals",
+          "values": [
+            "Unknown"
+          ]
+        }
+      ],
       },
       // for more guide apexchart.js
       // https://apexcharts.com/docs/chart-types/line-chart/
