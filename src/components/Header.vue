@@ -295,7 +295,7 @@ export default {
   },
   mounted() {
     // get theme dark or light with loadDarkMode()
-    this.darkMode = this.loadDarkMode();
+    //this.darkMode = this.loadDarkMode();
 
     document.onfullscreenchange = (event) => {
       if (document.fullscreenElement) {
