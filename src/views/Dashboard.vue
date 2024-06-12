@@ -25,11 +25,11 @@
           <button
             class="bg-white dark:bg-gray-800 hover:border-gray-200 dark:hover:bg-gray-700 dark:text-white dark:border-gray-700 border rounded py-2 px-5"
           >
-            <a href="http://localhost:4000/" target="_blank">
+            <a href="https://halobps-dashboard.vercel.app/" target="_blank">
               Data Report
             </a>
           </button>
-          <a href="http://localhost:8080/" target="_blank">
+          <a href="https://cube-halobps.azurewebsites.net/" target="_blank">
             <button
               class="bg-primary border flex gap-2 text-white hover:bg-primary/80 dark:border-gray-700 rounded py-3 px-5"
             >
