@@ -12,7 +12,7 @@
           </h1>
         </div>
         <div class="flex gap-2">
-          <a href="http://localhost:8080/" target="_blank">
+<!--          <a href="http://localhost:8080/" target="_blank">
             <button
               class="bg-white dark:bg-gray-800 border flex gap-2 hover:border-gray-200 dark:hover:bg-gray-700 rounded py-3 px-5"
             >
@@ -21,12 +21,12 @@
               /></span>
               <span class="text"> Download Report</span>
             </button>
-          </a>
+          </a> -->
           <button
             class="bg-white dark:bg-gray-800 hover:border-gray-200 dark:hover:bg-gray-700 dark:text-white dark:border-gray-700 border rounded py-2 px-5"
           >
             <a href="http://localhost:4000/" target="_blank">
-              New Data Model
+              Data Report
             </a>
           </button>
           <a href="http://localhost:8080/" target="_blank">
@@ -34,7 +34,7 @@
               class="bg-primary border flex gap-2 text-white hover:bg-primary/80 dark:border-gray-700 rounded py-3 px-5"
             >
               <span class="icon text-2xl"><Icon icon="ic:twotone-plus" /></span>
-              <span class="text"> Create New Report</span>
+              <span class="text"> Create New Data Model</span>
             </button>
           </a>
         </div>
@@ -296,7 +296,7 @@
                 id=""
                 class="dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700 border max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
               >
-                <option value="">Last 7 days</option>
+                <option value="">Last 7 years</option>
               </select>
               <button class="uppercase border-b border-red-600 text-red-600">
                 Entities Report
@@ -347,7 +347,7 @@
                 id=""
                 class="dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700 border max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
               >
-                <option value="">Last 7 days</option>
+                <option value="">Last 7 years</option>
               </select>
               <button class="uppercase border-b border-red-600 text-red-600">
                 Entities Report
@@ -394,7 +394,7 @@
                 id=""
                 class="dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700 border max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
               >
-                <option value="">Last 7 days</option>
+                <option value="">Last 7 years</option>
               </select>
               <button class="uppercase border-b border-red-600 text-red-600">
                 Status Report
@@ -479,7 +479,7 @@
                 id=""
                 class="dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700 border max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
               >
-                <option value="">Last 7 days</option>
+                <option value="">Last 7 years</option>
               </select>
               <button class="uppercase border-b border-red-600 text-red-600">
                 Impact Report
@@ -533,7 +533,7 @@
                 id=""
                 class="dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700 border max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
               >
-                <option value="">Last 7 days</option>
+                <option value="">Last 7 years</option>
               </select>
               <button class="uppercase border-b border-red-600 text-red-600">
                 BMN Category Report
@@ -786,7 +786,7 @@
                 id=""
                 class="dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700 border max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
               >
-                <option value="">Last 7 days</option>
+                <option value="">Last 7 years</option>
               </select>
               <button class="uppercase border-b border-red-600 text-red-600">
                 Product Report
@@ -830,7 +830,7 @@
                 id=""
                 class="dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-700 border max-w-lg px-4 py-3 block rounded-md text-gray-500 dark:text-gray-400"
               >
-                <option value="">Last 7 days</option>
+                <option value="">Last 7 years</option>
               </select>
               <button class="uppercase border-b border-red-600 text-red-600">
                 Vistor Report
